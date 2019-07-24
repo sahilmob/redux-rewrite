@@ -31,3 +31,16 @@ function createStore(reducer) {
 		dispatch
 	};
 }
+
+function combineReducers(reducers) {
+	let keys = Object.keys(reducers);
+	return function(state, action) {
+		state = state || {};
+		let next = {};
+
+		keys.forEach(function(key) {
+			next[key] = reducers[key](state[key], action);
+		});
+		return next;
+	};
+}
