@@ -17,7 +17,11 @@ function createStore(reducer) {
 		};
 	}
 
-	function dispatch(action) {}
+	function dispatch(action) {
+		state = reducer(state, action);
+		listeners.forEach(listener => listener());
+		return action;
+	}
 
 	return {
 		getState,
