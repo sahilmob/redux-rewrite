@@ -44,3 +44,15 @@ function combineReducers(reducers) {
 		return next;
 	};
 }
+
+function bindActionCreators(actionCreators, dispatch) {
+	let bounded = {};
+	const keys = Object.keys(actionCreators);
+	keys.forEach(function(key) {
+		let actionCreator = actionCreators[key];
+		bounded[key] = function() {
+			dispatch(actionCreator.apply(null, ...arguments));
+		};
+	});
+	return bounded;
+}
