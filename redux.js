@@ -1,5 +1,9 @@
 function createStore(reducer) {
-	function getState() {}
+	let state;
+
+	function getState() {
+		return state;
+	}
 
 	function subscribe(listener) {}
 
