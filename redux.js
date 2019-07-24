@@ -35,11 +35,11 @@ function createStore(reducer) {
 function combineReducers(reducers) {
 	let keys = Object.keys(reducers);
 	return function(state, action) {
-		state = state || {};
+		let currentState = state || {};
 		let next = {};
 
 		keys.forEach(function(key) {
-			next[key] = reducers[key](state[key], action);
+			next[key] = reducers[key](currentState[key], action);
 		});
 		return next;
 	};
